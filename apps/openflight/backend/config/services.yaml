@@ -25,6 +25,8 @@ services:
   # Wire
   CodelyTv\Shared\:
     resource: '../../../../src/Shared'
+  CodelyTv\OpenFlight\:
+    resource: '../../../../src/OpenFlight'
 
   # -- TAGGING --
   CodelyTv\Shared\Infrastructure\Bus\Event\InMemory\InMemorySymfonyEventBus:
