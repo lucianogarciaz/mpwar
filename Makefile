@@ -36,28 +36,18 @@ reload: composer-env-file
 	@docker-compose exec php-fpm kill -USR2 1
 	@docker-compose exec nginx nginx -s reload
 
-.PHONY: test
-test: composer-env-file
-	docker exec codelytv-php_ddd_skeleton-mooc_backend-php ./vendor/bin/phpunit --testsuite mooc
-	docker exec codelytv-php_ddd_skeleton-mooc_backend-php ./vendor/bin/phpunit --testsuite shared
-	docker exec codelytv-php_ddd_skeleton-mooc_backend-php ./vendor/bin/behat -p mooc_backend --format=progress -v
-	docker exec codelytv-php_ddd_skeleton-backoffice_backend-php ./vendor/bin/phpunit --testsuite backoffice
-
 .PHONY: static-analysis
 static-analysis: composer-env-file
-	docker exec codelytv-php_ddd_skeleton-mooc_backend-php ./vendor/bin/psalm
+	docker exec openflight-php ./vendor/bin/psalm
 
-.PHONY: run-tests
-run-tests: composer-env-file
-	mkdir -p build/test_results/phpunit
-	./vendor/bin/phpunit --exclude-group='disabled' --log-junit build/test_results/phpunit/junit.xml --testsuite backoffice
-	./vendor/bin/phpunit --exclude-group='disabled' --log-junit build/test_results/phpunit/junit.xml --testsuite mooc
-	./vendor/bin/phpunit --exclude-group='disabled' --log-junit build/test_results/phpunit/junit.xml --testsuite shared
-	./vendor/bin/behat -p mooc_backend --format=progress -v
 
 # 🐳 Docker Compose
 .PHONY: start
 start: CMD=up --build -d
+
+.PHONY: start-service
+start-service:
+	docker exec -i openflight-mysql mysql < ./etc/databases/openflight.sql
 
 .PHONY: stop
 stop: CMD=stop
@@ -79,10 +69,8 @@ rebuild: composer-env-file
 
 .PHONY: ping-mysql
 ping-mysql:
-	@docker exec codelytv-php_ddd_skeleton-mooc-mysql mysqladmin --user=root --password= --host "127.0.0.1" ping --silent
+	@docker exec openflight-mysql mysqladmin --user=root --password= --host "127.0.0.1" ping --silent
 
 clean-cache:
 	@rm -rf apps/*/*/var
-	@docker exec codelytv-php_ddd_skeleton-backoffice_backend-php ./apps/backoffice/backend/bin/console cache:warmup
-	@docker exec codelytv-php_ddd_skeleton-backoffice_frontend-php ./apps/backoffice/frontend/bin/console cache:warmup
-	@docker exec codelytv-php_ddd_skeleton-mooc_backend-php ./apps/mooc/backend/bin/console cache:warmup
+	@docker exec openflight-php ./apps/openflight/backend/bin/console cache:warmup
