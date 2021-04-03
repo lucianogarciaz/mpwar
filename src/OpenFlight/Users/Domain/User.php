@@ -15,6 +15,26 @@ class User extends AggregateRoot
     {
     }
 
+    public function ID(): Uuid
+    {
+        return $this->id;
+    }
+
+    public function Name(): string
+    {
+        return $this->name;
+    }
+
+    public function LastName(): string
+    {
+        return $this->lastname;
+    }
+
+    public function Password(): string
+    {
+        return $this->password;
+    }
+
     public static function RegisterUser(Uuid $id, string $name, string $lastname, string $password): User
     {
         self::validateName($name);

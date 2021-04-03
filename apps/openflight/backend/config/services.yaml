@@ -61,3 +61,6 @@ services:
 
   CodelyTv\Shared\Infrastructure\Persistence\Mysql:
     arguments: [ '%env(DATABASE_HOST)%','%env(DATABASE_NAME)%','%env(DATABASE_USER)%' ]
+
+  # -- IMPLEMENTATIONS SELECTOR --
+  CodelyTv\OpenFlight\Users\Domain\UserRepository: '@CodelyTv\OpenFlight\Users\Infrastructure\MysqlUserRepository'
