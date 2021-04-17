@@ -1,7 +1,7 @@
 current-dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 .PHONY: build
-build: deps start
+build: deps start start-service
 
 .PHONY: deps
 deps: composer-install
