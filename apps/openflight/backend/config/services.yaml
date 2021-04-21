@@ -18,13 +18,12 @@ services:
     resource: '../src/Controller'
     tags: [ 'controller.service_arguments' ]
 
-  CodelyTv\Apps\OpenFlight\Backend\Command\:
-    resource: '../src/Command'
-    tags: [ 'console.command' ]
 
   # Wire
   CodelyTv\Shared\:
     resource: '../../../../src/Shared'
+  CodelyTv\OpenFlight\:
+    resource: '../../../../src/OpenFlight'
 
   #    CodelyTv\OpenFlight\:
   #      resource: '../../../../src/OpenFlight'
@@ -63,5 +62,3 @@ services:
   CodelyTv\Shared\Infrastructure\Persistence\Mysql:
     arguments: [ '%env(DATABASE_HOST)%','%env(DATABASE_NAME)%','%env(DATABASE_USER)%' ]
 
-#    # -- IMPLEMENTATIONS SELECTOR --
-#    CodelyTv\OpenFlight\Users\Domain\UserRepository: '@CodelyTv\OpenFlight\Users\Infrastructure\MysqlUserRepository'
