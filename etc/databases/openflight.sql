@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`
 (
     `Id`       CHAR(36) NOT NULL,
+    `Username` TEXT     NOT NULL,
     `Name`     TEXT     NOT NULL,
     `LastName` TEXT     NOT NULL,
     `Password` TEXT     NOT NULL,

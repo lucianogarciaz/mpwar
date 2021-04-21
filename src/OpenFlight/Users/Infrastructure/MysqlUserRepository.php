@@ -18,9 +18,10 @@ final class MysqlUserRepository implements UserRepository
 
     public function Save(User $user): void
     {
-        $sql = 'INSERT INTO user VALUES(:id, :name,:last_name, :password)';
+        $sql = 'INSERT INTO user VALUES(:id, :username, :name,:last_name, :password)';
         $statement = $this->mysql->PDO()->prepare($sql);
         $statement->bindValue(':id', $user->ID()->value());
+        $statement->bindValue(':username', $user->Username());
         $statement->bindValue(':name', $user->Name());
         $statement->bindValue(':last_name', $user->LastName());
         $statement->bindValue(':password', $user->Password());
@@ -29,7 +30,6 @@ final class MysqlUserRepository implements UserRepository
 
     public function FindByID(Uuid $id): User
     {
-        return new User(Uuid::random(), "name", "lastName", "123Adfsdds");
-        // TODO: Implement FindByID() method.
+        // TODO: Implement it
     }
 }

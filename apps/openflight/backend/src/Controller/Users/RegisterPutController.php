@@ -21,6 +21,7 @@ final class RegisterPutController
         try {
             $this->userRegistration->__invoke(
                 $id,
+                $request->request->getAlpha('username'),
                 $request->request->getAlpha('name'),
                 $request->request->getAlpha('last_name'),
                 $request->request->get('password')

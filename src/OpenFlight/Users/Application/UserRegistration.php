@@ -14,10 +14,10 @@ class UserRegistration
     {
     }
 
-    public function __invoke(string $id, string $name, string $lastname, string $password): void
+    public function __invoke(string $id, string $username, string $name, string $lastname, string $password): void
     {
         $uuid = new Uuid($id);
-        $user = User::RegisterUser($uuid, $name, $lastname, $password);
+        $user = User::RegisterUser($uuid, $username, $name, $lastname, $password);
         $this->repository->Save($user);
     }
 }

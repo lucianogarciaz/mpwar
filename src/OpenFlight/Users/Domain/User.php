@@ -10,9 +10,18 @@ use CodelyTv\Shared\Domain\ValueObject\Uuid;
 class User extends AggregateRoot
 {
     const pattern = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/';
-
-    public function __construct(private Uuid $id, private string $name, private string $lastname, private string $password)
+    private Uuid $id;
+    private string $username;
+    private string $name;
+    private string $lastname;
+    private string $password;
+    public function __construct(Uuid $id,string $username, string $name, string $lastname, string $password)
     {
+        $this->id =$id;
+        $this->username =$username;
+        $this->name =$name;
+        $this->lastname =$lastname;
+        $this->password =$password;
     }
 
     public function ID(): Uuid
@@ -20,6 +29,10 @@ class User extends AggregateRoot
         return $this->id;
     }
 
+    public function Username(): string
+    {
+        return $this->username;
+    }
     public function Name(): string
     {
         return $this->name;
@@ -35,18 +48,26 @@ class User extends AggregateRoot
         return $this->password;
     }
 
-    public static function RegisterUser(Uuid $id, string $name, string $lastname, string $password): User
+    public static function RegisterUser(Uuid $id, string $username, string $name, string $lastname, string $password): User
     {
+        self::validateUserame($username);
         self::validateName($name);
         self::validateLastName($lastname);
         self::validatePassword($password);
-        return new self($id, $name, $lastname, $password);
+        return new self($id, $username, $name, $lastname, $password);
     }
 
     private static function validateName(string $name): void
     {
         if ($name == "") {
             throw new EmptyName();
+        }
+    }
+
+    private static function validateUserame(string $username): void
+    {
+        if ($username == "") {
+            throw new EmptyUsername();
         }
     }
 

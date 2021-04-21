@@ -18,9 +18,6 @@ services:
     resource: '../src/Controller'
     tags: [ 'controller.service_arguments' ]
 
-  CodelyTv\Apps\OpenFlight\Backend\Command\:
-    resource: '../src/Command'
-    tags: [ 'console.command' ]
 
   # Wire
   CodelyTv\Shared\:
