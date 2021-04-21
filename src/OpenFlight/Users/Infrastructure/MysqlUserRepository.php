@@ -9,6 +9,7 @@ use CodelyTv\OpenFlight\Users\Domain\User;
 use CodelyTv\OpenFlight\Users\Domain\UserRepository;
 use CodelyTv\Shared\Domain\ValueObject\Uuid;
 use CodelyTv\Shared\Infrastructure\Persistence\Mysql;
+use function Symfony\Component\String\u;
 
 final class MysqlUserRepository implements UserRepository
 {
@@ -28,8 +29,4 @@ final class MysqlUserRepository implements UserRepository
         $statement->execute();
     }
 
-    public function FindByID(Uuid $id): User
-    {
-        // TODO: Implement it
-    }
 }
