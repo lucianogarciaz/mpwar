@@ -30,7 +30,7 @@
 
 ### Enunciado
 
-Ahora que tenemos el `/register-user`, ahora debemos poder loguearnos.
+Ya que tenemos el `/register-user`, ahora debemos poder loguearnos.
 Por lo tanto se pide implementar el caso de uso `Login`
 El mismo será una petición http `POST` al endpoint `/login` y el body será de la siguiente manera
 ```json
