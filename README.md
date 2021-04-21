@@ -16,7 +16,35 @@
    2. PUT [register-user](apps/openflight/backend/src/Controller/Users): http://localhost:8030/register-user/e617f839-c8ee-4580-a0d3-6dceab0f3293 + body
    
 
-## Add a new endpoint
+### Add a new endpoint
 
 1. Create a controller that will receive the request inside [controller](apps/openflight/backend/src/Controller)
 2. Create the route in [routes](apps/openflight/backend/config/routes)
+
+## Enunciado Practico NRO 1
+
+1. Deben clonar este proyecto y luego subirlo a un repositorio privado de cada grupo
+2. El nombre del proyecto mpwar-openflight-g{nro}
+3. Deben dar acceso al usuario lucianogarciaz
+4. Para entregar el práctico debe ser un pull request contra la rama `master` con fecha máxima 28-04-2021x 
+
+### Enunciado
+
+Ahora que tenemos el `/register-user`, ahora debemos poder loguearnos.
+Por lo tanto se pide implementar el caso de uso `Login`
+El mismo será una petición http `POST` al endpoint `/login` y el body será de la siguiente manera
+```json
+{
+   "username": "lucianogarciaz",
+   "password": "pwned_password"
+}
+```
+
+#### Negocio nos pide
+* Si el usuario no puede loguearse (por que su password es incorrecto, o no existe en la base de datos) deberá devolver 
+"Incorrect credentials".
+
+### Mínimos requisitos para aprobar
+* Cumplir con la regla de dependencias
+
+#### NOTA: Agregar todos los métodos, clases o interfaces que crea que haga falta.
