@@ -10,8 +10,14 @@ final class Mysql
 {
     private PDO $pdo;
 
+
     public function __construct(string $host, string $dbname, string $username)
     {
         $this->pdo = new PDO(sprintf('mysql:host=%s;dbname=%s', $host, $dbname), $username, '');
+    }
+
+    public function PDO(): PDO
+    {
+        return $this->pdo;
     }
 }

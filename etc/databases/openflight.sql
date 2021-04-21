@@ -7,9 +7,10 @@ USE `open_flight`;
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`
 (
-    `id`       CHAR(36) NOT NULL,
-    `name`     TEXT     NOT NULL,
-    `lastname` TEXT     NOT NULL,
-    `password` TEXT     NOT NULL,
-    PRIMARY KEY (`id`)
+    `Id`       CHAR(36) NOT NULL,
+    `Username` TEXT     NOT NULL,
+    `Name`     TEXT     NOT NULL,
+    `LastName` TEXT     NOT NULL,
+    `Password` TEXT     NOT NULL,
+    PRIMARY KEY (`Id`)
 ) ENGINE = InnoDB;
