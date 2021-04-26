@@ -8,10 +8,8 @@ namespace CodelyTv\OpenFlight\Users\Infrastructure;
 
 use CodelyTv\OpenFlight\Users\Domain\User;
 use CodelyTv\OpenFlight\Users\Domain\UserRepository;
-use CodelyTv\Shared\Domain\ValueObject\Uuid;
 use CodelyTv\Shared\Infrastructure\Persistence\Mysql;
 
-use function Symfony\Component\String\u;
 
 final class MysqlUserRepository implements UserRepository
 {
@@ -31,13 +29,13 @@ final class MysqlUserRepository implements UserRepository
         $statement->execute();
     }
 
-    public function Login(User $user): void
+    public function findByUsername(string $username): array
     {
-        $sql = 'SELECT * FROM user WHERE username = :username AND password = :password LIMIT 1';
+        $sql = 'SELECT * FROM user WHERE username = :username LIMIT 1';
         $statement = $this->mysql->PDO()->prepare($sql);
-        $statement->bindValue(':username', $user->Username());
-        $statement->bindValue(':password', $user->Password());
+        $statement->bindValue(':username', $username);
         $statement->execute();
-    }
 
+        return $statement->fetchAll();
+    }
 }

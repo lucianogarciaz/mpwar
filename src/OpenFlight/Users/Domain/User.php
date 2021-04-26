@@ -64,13 +64,6 @@ class User extends AggregateRoot
         return new self($id, $username, $name, $lastname, $password);
     }
 
-    public static function LoginUser(string $username, string $password): User
-    {
-        self::validateUserame($username);
-        self::validatePassword($password);
-        return new self("", $username, "", "", $password);
-    }
-
     private static function validateName(string $name): void
     {
         if ($name == "") {
@@ -88,7 +81,7 @@ class User extends AggregateRoot
     private static function validateLastName(string $lastname): void
     {
         if ($lastname == "") {
-            throw new EmptyLastName();
+            throw new IncorrectUserCredentials();
         }
     }
 

@@ -1,4 +1,4 @@
-register-user_post:
+login-user_post:
   path: /login
   controller: CodelyTv\Apps\OpenFlight\Backend\Controller\Users\LoginPostController
   methods: [ POST ]

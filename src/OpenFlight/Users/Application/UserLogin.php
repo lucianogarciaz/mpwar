@@ -4,9 +4,12 @@
 namespace CodelyTv\OpenFlight\Users\Application;
 
 
+use CodelyTv\OpenFlight\Users\Domain\IncorrectUserCredentials;
 use CodelyTv\OpenFlight\Users\Domain\User;
 use CodelyTv\OpenFlight\Users\Domain\UserRepository;
 use CodelyTv\Shared\Domain\ValueObject\Uuid;
+use Monolog\Processor\UidProcessor;
+use mysql_xdevapi\Exception;
 
 class UserLogin
 {
@@ -21,7 +24,14 @@ class UserLogin
 
     public function __invoke(string $username, string $password): void
     {
-        $user = User::LoginUser($username, $password);
-        $this->repository->Login($user);
+        $userArr = $this->repository->findByUsername($username);
+        if (empty($userArr)) {
+            throw new IncorrectUserCredentials();
+        }
+
+        $currentUser = $userArr[0];
+        if ($currentUser["Password"] !== $password) {
+            throw new IncorrectUserCredentials();
+        }
     }
 }

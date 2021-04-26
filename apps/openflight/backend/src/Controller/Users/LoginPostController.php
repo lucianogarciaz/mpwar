@@ -16,14 +16,14 @@ final class LoginPostController
     {
     }
 
-    public function __invoke(string $id, Request $request): JsonResponse
+    public function __invoke(Request $request): JsonResponse
     {
         try {
             $this->userLogin->__invoke(
                 $request->request->getAlpha('username'),
                 $request->request->get('password')
             );
-            return new JsonResponse("OK", Response::HTTP_CREATED);
+            return new JsonResponse("OK", Response::HTTP_OK);
         } catch (DomainError $e) {
             return new JsonResponse($e->getMessage(), Response::HTTP_BAD_REQUEST);
         }
