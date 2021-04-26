@@ -19,5 +19,6 @@ class UserRegistration
         $uuid = new Uuid($id);
         $user = User::RegisterUser($uuid, $username, $name, $lastname, $password);
         $this->repository->Save($user);
+        //x cambio
     }
 }
