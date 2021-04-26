@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 
@@ -9,6 +10,7 @@ use CodelyTv\OpenFlight\Users\Domain\User;
 use CodelyTv\OpenFlight\Users\Domain\UserRepository;
 use CodelyTv\Shared\Domain\ValueObject\Uuid;
 use CodelyTv\Shared\Infrastructure\Persistence\Mysql;
+
 use function Symfony\Component\String\u;
 
 final class MysqlUserRepository implements UserRepository
@@ -25,6 +27,15 @@ final class MysqlUserRepository implements UserRepository
         $statement->bindValue(':username', $user->Username());
         $statement->bindValue(':name', $user->Name());
         $statement->bindValue(':last_name', $user->LastName());
+        $statement->bindValue(':password', $user->Password());
+        $statement->execute();
+    }
+
+    public function Login(User $user): void
+    {
+        $sql = 'SELECT * FROM user WHERE username = :username AND password = :password LIMIT 1';
+        $statement = $this->mysql->PDO()->prepare($sql);
+        $statement->bindValue(':username', $user->Username());
         $statement->bindValue(':password', $user->Password());
         $statement->execute();
     }

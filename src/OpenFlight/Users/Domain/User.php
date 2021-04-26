@@ -15,13 +15,14 @@ class User extends AggregateRoot
     private string $name;
     private string $lastname;
     private string $password;
-    public function __construct(Uuid $id,string $username, string $name, string $lastname, string $password)
+
+    public function __construct(Uuid $id, string $username, string $name, string $lastname, string $password)
     {
-        $this->id =$id;
-        $this->username =$username;
-        $this->name =$name;
-        $this->lastname =$lastname;
-        $this->password =$password;
+        $this->id = $id;
+        $this->username = $username;
+        $this->name = $name;
+        $this->lastname = $lastname;
+        $this->password = $password;
     }
 
     public function ID(): Uuid
@@ -33,6 +34,7 @@ class User extends AggregateRoot
     {
         return $this->username;
     }
+
     public function Name(): string
     {
         return $this->name;
@@ -48,13 +50,25 @@ class User extends AggregateRoot
         return $this->password;
     }
 
-    public static function RegisterUser(Uuid $id, string $username, string $name, string $lastname, string $password): User
-    {
+    public static function RegisterUser(
+        Uuid $id,
+        string $username,
+        string $name,
+        string $lastname,
+        string $password
+    ): User {
         self::validateUserame($username);
         self::validateName($name);
         self::validateLastName($lastname);
         self::validatePassword($password);
         return new self($id, $username, $name, $lastname, $password);
+    }
+
+    public static function LoginUser(string $username, string $password): User
+    {
+        self::validateUserame($username);
+        self::validatePassword($password);
+        return new self("", $username, "", "", $password);
     }
 
     private static function validateName(string $name): void
