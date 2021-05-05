@@ -7,9 +7,7 @@ namespace CodelyTv\OpenFlight\Users\Infrastructure;
 
 use CodelyTv\OpenFlight\Users\Domain\User;
 use CodelyTv\OpenFlight\Users\Domain\UserRepository;
-use CodelyTv\Shared\Domain\ValueObject\Uuid;
 use CodelyTv\Shared\Infrastructure\Persistence\Mysql;
-use function Symfony\Component\String\u;
 
 final class MysqlUserRepository implements UserRepository
 {
@@ -19,7 +17,7 @@ final class MysqlUserRepository implements UserRepository
 
     public function Save(User $user): void
     {
-        $sql = 'INSERT INTO user VALUES(:id, :username, :name,:last_name, :password)';
+        $sql = 'INSERT IGNORE INTO user VALUES(:id, :username, :name,:last_name, :password)';
         $statement = $this->mysql->PDO()->prepare($sql);
         $statement->bindValue(':id', $user->ID()->value());
         $statement->bindValue(':username', $user->Username());
