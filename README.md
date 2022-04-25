@@ -1,3 +1,7 @@
+Nombre: Lester David López Bustillo
+
+Email: lesterdavid.lopez@students.salle.url.edu
+
 ## 🚀 Environment Setup
 
 ### 🐳 Needed tools
