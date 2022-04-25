@@ -13,5 +13,6 @@ class UserLogin
     public function __invoke(string $username, string $password): void
     {
         $user = $this->repository->FindUser($username);
+        $user->AttemptLoginUser($password);
     }
 }

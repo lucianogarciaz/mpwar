@@ -48,6 +48,12 @@ class User extends AggregateRoot
         return $this->password;
     }
 
+    public function AttemptLoginUser(string $password): void {
+        if ($this->password !== $password) {
+            throw new IncorrectCredentials();
+        }
+    }
+
     public static function RegisterUser(Uuid $id, string $username, string $name, string $lastname, string $password): User
     {
         self::validateUserame($username);
