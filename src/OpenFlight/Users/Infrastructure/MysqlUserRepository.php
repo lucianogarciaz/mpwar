@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 
@@ -9,6 +10,8 @@ use CodelyTv\OpenFlight\Users\Domain\User;
 use CodelyTv\OpenFlight\Users\Domain\UserRepository;
 use CodelyTv\Shared\Domain\ValueObject\Uuid;
 use CodelyTv\Shared\Infrastructure\Persistence\Mysql;
+use Exception;
+
 use function Symfony\Component\String\u;
 
 final class MysqlUserRepository implements UserRepository
@@ -19,7 +22,7 @@ final class MysqlUserRepository implements UserRepository
 
     public function Save(User $user): void
     {
-        $sql = 'INSERT INTO user VALUES(:id, :username, :name,:last_name, :password)';
+        $sql       = 'INSERT INTO user VALUES(:id, :username, :name,:last_name, :password)';
         $statement = $this->mysql->PDO()->prepare($sql);
         $statement->bindValue(':id', $user->ID()->value());
         $statement->bindValue(':username', $user->Username());
@@ -29,4 +32,24 @@ final class MysqlUserRepository implements UserRepository
         $statement->execute();
     }
 
+    public function FindUser(string $username): User
+    {
+        $query     = 'SELECT * FROM user WHERE username = :username LIMIT 1';
+        $statement = $this->mysql->PDO()->prepare($query);
+        $statement->bindValue(':username', $username);
+        $statement->execute();
+
+        $data = $statement->fetch();
+        if ($data) {
+            return new User(
+                new Uuid($data['Id']),
+                $data['Username'],
+                $data['Name'],
+                $data['LastName'],
+                $data['Password']
+            );
+        }
+
+        throw new Exception();
+    }
 }
