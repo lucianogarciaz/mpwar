@@ -48,3 +48,30 @@ El mismo será una petición http `POST` al endpoint `/login` y el body será de
 * Cumplir con la regla de dependencias
 
 #### NOTA: Agregar todos los métodos, clases o interfaces que crea que haga falta.
+
+## Enunciado Practico NRO 2
+
+Ya tenemos los usuarios creados y se pueden loguear en nuestro sistema
+Ahora queremos poder crear un vuelo
+El vuelo tiene que tener una localidad de origen y otra final
+El mismo será una petición http `POST` al endpoint `/create-flight` y el body será de la siguiente manera
+```json
+{
+   "id": "00e71601-d7ad-492f-b703-4160e622c55e",
+   "origin": "BCN",
+   "destination": "LAX",
+   "flight-hours": "2",
+   "price": "234",
+   "currency":"€",
+   "departure-date": "2020-02-20 14:00",
+   "aircraft": "Boeing 757",
+   "airline": "Air France"
+}
+```
+Restricciones:
+* El aeropuerto debe ser válido
+* El aeropuerto de partida debe ser distinto al de llegada
+* Las horas de vuelo deben ser mayores a 1.
+* Las currencies que aceptamos son dolares, libras y euros ($, £, €)
+* La fecha de partida debe ser mayor a la fecha actual
+* El vuelo debe ser creado con éxito (response status: 200)
