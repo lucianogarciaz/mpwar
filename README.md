@@ -75,3 +75,18 @@ Restricciones:
 * Las currencies que aceptamos son dolares, libras y euros ($, £, €)
 * La fecha de partida debe ser mayor a la fecha actual
 * El vuelo debe ser creado con éxito (response status: 200)
+
+
+## Enunciado Práctico Nro 3
+Ya tenemos los usuarios creados, y se pueden loguear. Desde nuestro backoffice podemos crear un vuelo.
+El nuevo paso que debemos dar es que un usuario pueda reservar un vuelo.
+Aquí tener en cuenta:
+* Asiento
+* Clase
+* Precio
+* ...?
+
+
+El práctico 3 tiene dos partes.
+* La primera parte consiste en diseñar el agregado y debatirlo con el docente.
+* La segunda parte consiste en implementar el diseño del agregado.
