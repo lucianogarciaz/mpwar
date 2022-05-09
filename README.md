@@ -90,3 +90,11 @@ Aquí tener en cuenta:
 El práctico 3 tiene dos partes.
 * La primera parte consiste en diseñar el agregado y debatirlo con el docente.
 * La segunda parte consiste en implementar el diseño del agregado.
+
+
+## Enunciado Práctico Nro 4
+Ahora que vimos lo que son los eventos de dominio, pues tienen que implementar eventos de dominios en sus casos de uso!
+
+## Enunciado Práctico Nro 5
+Este práctico consiste en modificar las llamadas que teniamos desde el controlador al caso de uso utilizando el patrón
+CQS!
