@@ -98,3 +98,14 @@ Ahora que vimos lo que son los eventos de dominio, pues tienen que implementar e
 ## Enunciado Práctico Nro 5
 Este práctico consiste en modificar las llamadas que teniamos desde el controlador al caso de uso utilizando el patrón
 CQS!
+
+## Enunciado Práctico Final Individual
+
+* Buscar los vuelos disponibles entre fechas y destino
+* En nuestro sistema se crean muchos vuelos y realizar contarlos paso a ser una tarea muy costosa en tiempo para nuestro sistema.
+  Por lo tanto queremos tener un contador de vuelos por destino. (eventualmente consistente).
+* Como usuario quiero poder ver las reservas de vuelo que tengo.
+
+Fecha máxima de entrega 2 de Junio de 2022.
+
+No olvidar enviar email cuando este todo listo.
